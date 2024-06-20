@@ -24,6 +24,9 @@ This is a simple notification service that sends notifications to users consider
 ## Currently it cannot be run by a jar, so it is necessary to run the main class
 ```
 
+- IMPORTANT: IF YOU ARE RUNNING USING SOME IDE, YOU CAN RUN IT USING THE MAIN CLASS (com.mybank.Main) 
+
+
 ## Architecture
 The system is divided into 3 layers: input(console), core(domain, service, repository) and infra(cache, gateway).
 The division was made considering the separation of concerns and the possibility of changing the external world interface without changing the core of the system, 
