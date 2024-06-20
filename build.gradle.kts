@@ -1,6 +1,8 @@
 plugins {
     id("java")
     kotlin("jvm")
+    id("application")
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "com.mybank"
@@ -8,6 +10,15 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+}
+
+application {
+    mainClass = "com.mybank.Main"
+}
+
+// Shadow task depends on Jar task, so these configs are reflected for Shadow as well
+tasks.jar {
+    manifest.attributes["Main-Class"] = "com.mybank.Main"
 }
 
 dependencies {

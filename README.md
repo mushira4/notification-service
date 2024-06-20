@@ -16,12 +16,15 @@ This is a simple notification service that sends notifications to users consider
 
 - Generate jar:
 ```bash
-## Currently it is not possible to generate a jar
+./gradlew shadowJar
+## The jar will be generated in build/libs/NotificationService-1.0-SNAPSHOT-all.jar
 ```
 
 - Run the application:
 ```bash
-## Currently it cannot be run by a jar, so it is necessary to run the main class
+# Before execute this command, make sure that the Redis is running.
+# You can run the Redis using the docker-compose file in the root of the project. (docker-compose up -d)
+java -jar build/libs/NotificationService-1.0-SNAPSHOT-all.jar
 ```
 
 - IMPORTANT: IF YOU ARE RUNNING USING SOME IDE, YOU CAN RUN IT USING THE MAIN CLASS (com.mybank.Main) 
