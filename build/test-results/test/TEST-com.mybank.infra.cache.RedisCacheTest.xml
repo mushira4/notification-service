@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.mybank.infra.cache.RedisCacheTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-06-20T02:15:18" hostname="nbr-5pjq9n3" time="15.042">
+  <properties/>
+  <testcase name="testMultipleAddWithExpirationWhenItExpires()" classname="com.mybank.infra.cache.RedisCacheTest" time="4.009"/>
+  <testcase name="testMultipleAddWithExpiration()" classname="com.mybank.infra.cache.RedisCacheTest" time="2.007"/>
+  <testcase name="testAddWithExpirationWhenItExpires()" classname="com.mybank.infra.cache.RedisCacheTest" time="2.008"/>
+  <testcase name="testAddWithExpiration()" classname="com.mybank.infra.cache.RedisCacheTest" time="0.004"/>
+  <testcase name="testMultipleAddWithExpirationWhenItExpires2()" classname="com.mybank.infra.cache.RedisCacheTest" time="2.004"/>
+  <testcase name="testMultipleAddWithExpirationWhenItExpires3()" classname="com.mybank.infra.cache.RedisCacheTest" time="5.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+</testsuite>

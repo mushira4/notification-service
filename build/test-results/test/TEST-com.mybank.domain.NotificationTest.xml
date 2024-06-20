@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.mybank.domain.NotificationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-06-20T02:15:17" hostname="nbr-5pjq9n3" time="0.016">
+  <properties/>
+  <testcase name="testRateLimitQuantity()" classname="com.mybank.domain.NotificationTest" time="0.011"/>
+  <testcase name="testGetKey()" classname="com.mybank.domain.NotificationTest" time="0.003"/>
+  <testcase name="testRateLimitTimeToLive()" classname="com.mybank.domain.NotificationTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
