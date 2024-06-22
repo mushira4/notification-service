@@ -27,8 +27,10 @@ This is a simple notification service that sends notifications to users consider
 java -jar build/libs/NotificationService-1.0-SNAPSHOT-all.jar
 ```
 
-- IMPORTANT: IF YOU ARE RUNNING USING SOME IDE, YOU CAN RUN IT USING THE MAIN CLASS (com.mybank.Main) 
-
+##### Example of input
+The message must be posted to the console in the following format: status,user,message.
+It should separated by commas without space between them.
+Ex: `news,user1,message1`, `marketing,user2,message333`, `status,user3,message1`, `any_other_type,user1,message1`
 
 ## Architecture
 The system is divided into 3 layers: input(console), core(domain, service, repository) and infra(cache, gateway).
