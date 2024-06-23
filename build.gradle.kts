@@ -16,15 +16,41 @@ repositories {
 }
 
 application {
-    mainClass = "com.mybank.motification.ConsoleApplication"
+    if (project.findProperty("chooseMain") != null) {
+        if (project.findProperty("chooseMain") == "rest") {
+            mainClass = "com.mybank.notification.RestServiceApplication"
+        } else if (project.findProperty("chooseMain") == "console") {
+            mainClass = "com.mybank.notification.ConsoleApplication"
+        }
+    } else {
+        mainClass = "com.mybank.notification.RestServiceApplication"
+    }
+}
+
+tasks.bootJar {
+    launchScript {
+        enabled = true
+    }
+    enabled = true
+
+    if (project.findProperty("chooseMain") != null) {
+        if (project.findProperty("chooseMain") == "rest") {
+            archiveFileName = "notification-service-rest-${archiveVersion.get()}.${archiveExtension.get()}"
+        } else if (project.findProperty("chooseMain") == "console") {
+            archiveFileName = "notification-service-console-${archiveVersion.get()}.${archiveExtension.get()}"
+        }
+    } else {
+        archiveFileName = "notification-service-${archiveVersion.get()}.${archiveExtension.get()}"
+    }
 }
 
 // Shadow task depends on Jar task, so these configs are reflected for Shadow as well
-tasks.jar {
-    manifest.attributes["Main-Class"] = "com.mybank.motification.ConsoleApplication"
+tasks.shadowJar {
+    manifest.attributes["Main-Class"] = project.findProperty("chooseMain").toString()
 }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-loader:3.3.0")
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("redis.clients:jedis:5.1.3")

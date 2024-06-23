@@ -16,7 +16,8 @@ This is a simple notification service that sends notifications to users consider
 
 - Generate jar:
 ```bash
-./gradlew shadowJar
+./gradlew bootJar
+## -PChooseMain is used to choose the main class that will be used to generate the jar. (Options = rest || console)
 ## The jar will be generated in build/libs/NotificationService-1.0-SNAPSHOT-all.jar
 ```
 
@@ -24,10 +25,13 @@ This is a simple notification service that sends notifications to users consider
 ```bash
 # Before execute this command, make sure that the Redis is running.
 # You can run the Redis using the docker-compose file in the root of the project. (docker-compose up -d)
-java -jar build/libs/NotificationService-1.0-SNAPSHOT-all.jar
+java -jar build/libs/notification-service-1.0-SNAPSHOT.jar
 ```
 
-##### Example of input
+##### Rest Usage Documentation (Swagger)
+The swagger documentation is available in the following URL: http://localhost:8080/swagger-ui.html
+
+##### Console Usage Documentation
 The message must be posted to the console in the following format: status,user,message.
 It should be separated by commas without space between them.
 Ex: `news,user1,message1`, `marketing,user2,message333`, `status,user3,message1`, `any_other_type,user1,message1`
@@ -51,6 +55,3 @@ The infra layer is responsible for the communication with systems there are not 
 The solution designed used Redis as a controller of the number of requests and timeframes, the main idea is to have a service
 that can be scaled horizontally and keep the `rate limit` data accessible across the cluster, so Redis can be deployed and keep the data updated
 between all nodes that receives the notifications.
-
-## Swagger Documentation
-The swagger documentation is available in the following URL: http://localhost:8080/swagger-ui.html
