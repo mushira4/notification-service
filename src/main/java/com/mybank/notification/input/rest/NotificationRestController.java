@@ -20,14 +20,8 @@ public class NotificationRestController {
     public void sendNotification(
             @RequestBody NotificationCreateRequestDTO request
     ) {
-        System.out.println(request);
         NotificationType type = NotificationType.getNotificationType(request.getType());
         notificationService.send(type, request.getUserId(), request.getMessage());
-    }
-
-    @GetMapping()
-    public void getNotification() {
-        System.out.println("TESTE");
     }
 
 }
