@@ -29,7 +29,7 @@ java -jar build/libs/NotificationService-1.0-SNAPSHOT-all.jar
 
 ##### Example of input
 The message must be posted to the console in the following format: status,user,message.
-It should separated by commas without space between them.
+It should be separated by commas without space between them.
 Ex: `news,user1,message1`, `marketing,user2,message333`, `status,user3,message1`, `any_other_type,user1,message1`
 
 ## Architecture
@@ -51,3 +51,6 @@ The infra layer is responsible for the communication with systems there are not 
 The solution designed used Redis as a controller of the number of requests and timeframes, the main idea is to have a service
 that can be scaled horizontally and keep the `rate limit` data accessible across the cluster, so Redis can be deployed and keep the data updated
 between all nodes that receives the notifications.
+
+## Swagger Documentation
+The swagger documentation is available in the following URL: http://localhost:8080/swagger-ui.html
