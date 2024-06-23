@@ -30,10 +30,8 @@ dependencies {
     implementation("redis.clients:jedis:5.1.3")
 
     //Documentation
-    implementation("io.springfox:springfox-boot-starter:3.0.0")
-    implementation("org.springdoc:springdoc-openapi-ui:1.6.11")
-    implementation("org.springdoc:springdoc-openapi-data-rest:1.6.14")
     implementation("javax.servlet:javax.servlet-api:4.0.1")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
 
     testImplementation(platform("org.junit:junit-bom:5.10.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
