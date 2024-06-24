@@ -1,14 +1,14 @@
 package com.mybank.notification.input.console;
 
 import com.mybank.notification.core.domain.NotificationType;
-import com.mybank.notification.core.service.NotificationService;
+import com.mybank.notification.usecase.SendNotificationUseCase;
 
 import java.util.Scanner;
 
 public class NotificationConsoleController {
-    private final NotificationService service;
+    private final SendNotificationUseCase service;
 
-    public NotificationConsoleController(NotificationService service) {
+    public NotificationConsoleController(SendNotificationUseCase service) {
         this.service = service;
     }
 

@@ -1,6 +1,6 @@
 package com.mybank.notification.input.rest.dto;
 
-import com.mybank.notification.core.service.dto.NotificationServiceOutput;
+import com.mybank.notification.usecase.dto.SendNotificationOutput;
 
 public record NotificationCreateResponseDTO(
     String type,
@@ -8,8 +8,8 @@ public record NotificationCreateResponseDTO(
     String message,
     Integer numberOfMessages){
 
-    public NotificationCreateResponseDTO(NotificationServiceOutput notificationServiceOutput) {
-        this(notificationServiceOutput.type().name(), notificationServiceOutput.userId(), notificationServiceOutput.message(), notificationServiceOutput.numberOfMessagesSent());
+    public NotificationCreateResponseDTO(SendNotificationOutput sendNotificationOutput) {
+        this(sendNotificationOutput.type().name(), sendNotificationOutput.userId(), sendNotificationOutput.message(), sendNotificationOutput.numberOfMessagesSent());
     }
 
 }

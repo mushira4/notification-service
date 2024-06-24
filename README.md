@@ -21,11 +21,18 @@ This is a simple notification service that sends notifications to users consider
 ## The jar will be generated in build/libs/NotificationService-1.0-SNAPSHOT-all.jar
 ```
 
-- Run the application:
+- Run the application with the jar:
 ```bash
 # Before execute this command, make sure that the Redis is running.
 # You can run the Redis using the docker-compose file in the root of the project. (docker-compose up -d)
 java -jar build/libs/notification-service-1.0-SNAPSHOT.jar
+```
+
+- Run the application with the code:
+```bash
+# Before execute this command, make sure that the Redis is running.
+# You can run the Redis using the docker-compose file in the root of the project. (docker-compose up -d)
+./gradlew bootRun
 ```
 
 ##### Rest Usage Documentation (Swagger)
@@ -46,7 +53,11 @@ This layer is responsible to receive the input from the external world and parse
 
 ### Core
 The core separates all the business logic in order to keep the system maintainable and testable.
-Keeping this layer without influence of the input layer and infra layer makes it more stable as well. (Hexagonal Architecture Component: Input Port, Business Logic)
+Keeping this layer without influence of the input layer and infra layer makes it more stable as well. (Hexagonal Architecture Component: Business Logic)
+
+### Usecase
+The use case layer is responsible for the orchestration of the business logic, it is the layer that will be called by the input layer and will call the infra layer.
+It contains just one responsibility per use case, so it can be easily tested and maintained. (Hexagonal Architecture Component:  Input Port)
 
 ### Infra
 The infra layer is responsible for the communication with systems there are not part of the core of the system. (Hexagonal Architecture Component: Output Port, Secondary Adapter)

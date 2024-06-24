@@ -1,8 +1,8 @@
 package com.mybank.notification.input.rest;
 
 import com.mybank.notification.core.domain.NotificationType;
-import com.mybank.notification.core.service.NotificationService;
-import com.mybank.notification.core.service.dto.NotificationServiceOutput;
+import com.mybank.notification.usecase.SendNotificationUseCase;
+import com.mybank.notification.usecase.dto.SendNotificationOutput;
 import com.mybank.notification.input.rest.dto.NotificationCreateRequestDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +27,7 @@ class NotificationRestControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private NotificationService notificationService;
+    private SendNotificationUseCase sendNotificationUseCase;
 
     private ObjectMapper objectMapper;
 
@@ -41,8 +41,8 @@ class NotificationRestControllerTest {
         NotificationCreateRequestDTO request
                 = new NotificationCreateRequestDTO("news", "user1", "message");
 
-        when(notificationService.send(NotificationType.NEWS, "user1", "message"))
-                .thenReturn(new NotificationServiceOutput(NotificationType.NEWS, "user1", "message", 1));
+        when(sendNotificationUseCase.send(NotificationType.NEWS, "user1", "message"))
+                .thenReturn(new SendNotificationOutput(NotificationType.NEWS, "user1", "message", 1));
 
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/notification")
                 .content(objectMapper.writeValueAsString(request))
