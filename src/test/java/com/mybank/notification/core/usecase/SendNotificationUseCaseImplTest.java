@@ -26,7 +26,7 @@ class SendNotificationUseCaseImplTest {
     private Gateway mockedGateway;
 
     @InjectMocks
-    private SendNotificationUseCaseImpl notificationService;
+    private SendNotificationUseCaseImpl sendNotificationUseCase;
 
     @Test
     void testSendNotification() {
@@ -35,7 +35,7 @@ class SendNotificationUseCaseImplTest {
 
         when(mockedRepository.findNumberOfEntries(notification)).thenReturn(1);
 
-        notificationService.send(type, "user1", "message1");
+        sendNotificationUseCase.send(type, "user1", "message1");
 
         verify(mockedRepository, times(1)).save(notification);
         verify(mockedGateway, times(1)).send(any());
@@ -48,9 +48,7 @@ class SendNotificationUseCaseImplTest {
 
         when(mockedRepository.findNumberOfEntries(notification)).thenReturn(10);
 
-        Assertions.assertThrows(NotificationRateLimitException.class, () -> {
-            notificationService.send(type, "user1", "message1");
-        });
+        Assertions.assertThrows(NotificationRateLimitException.class, () -> sendNotificationUseCase.send(type, "user1", "message1"));
 
         verify(mockedRepository, times(0)).save(notification);
         verify(mockedGateway, times(0)).send(any());
