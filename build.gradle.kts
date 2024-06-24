@@ -40,7 +40,7 @@ tasks.bootJar {
             archiveFileName = "notification-service-console-${archiveVersion.get()}.${archiveExtension.get()}"
         }
     } else {
-        archiveFileName = "notification-service-${archiveVersion.get()}.${archiveExtension.get()}"
+        archiveFileName = "notification-service-rest-${archiveVersion.get()}.${archiveExtension.get()}"
     }
 }
 
