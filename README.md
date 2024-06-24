@@ -28,6 +28,17 @@ This is a simple notification service that sends notifications to users consider
 java -jar build/libs/notification-service-1.0-SNAPSHOT.jar
 ```
 
+- Run containerized:
+```bash
+./gradlew bootJar
+
+docker build -t notification-service . 
+
+# Before execute this command, make sure that the Redis is running.
+# You can run the Redis using the docker-compose file in the root of the project. (docker-compose up -d)
+docker run -p 8080:8080 notification-service
+```
+
 - Run the application with the code:
 ```bash
 # Before execute this command, make sure that the Redis is running.
