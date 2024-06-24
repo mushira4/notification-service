@@ -5,8 +5,8 @@ import com.mybank.notification.infra.cache.Cache;
 import com.mybank.notification.infra.cache.RedisCache;
 import com.mybank.notification.infra.gateway.Gateway;
 import com.mybank.notification.core.repository.RateLimitRepository;
-import com.mybank.notification.core.service.NotificationService;
-import com.mybank.notification.core.service.NotificationServiceImpl;
+import com.mybank.notification.usecase.SendNotificationUseCase;
+import com.mybank.notification.usecase.SendNotificationUseCaseImpl;
 
 public class ConsoleApplication {
     public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class ConsoleApplication {
 
         Gateway gateway = new Gateway();
 
-        NotificationService service = new NotificationServiceImpl(gateway, rateLimitRepository);
+        SendNotificationUseCase service = new SendNotificationUseCaseImpl(gateway, rateLimitRepository);
         NotificationConsoleController console = new NotificationConsoleController(service);
 
         console.initConsole();

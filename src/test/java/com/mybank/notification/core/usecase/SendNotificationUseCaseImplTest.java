@@ -1,10 +1,11 @@
-package com.mybank.notification.core.service;
+package com.mybank.notification.core.usecase;
 
 import com.mybank.notification.core.domain.Notification;
 import com.mybank.notification.core.domain.NotificationType;
 import com.mybank.notification.core.exception.NotificationRateLimitException;
 import com.mybank.notification.infra.gateway.Gateway;
 import com.mybank.notification.core.repository.RateLimitRepository;
+import com.mybank.notification.usecase.SendNotificationUseCaseImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +17,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class NotificationServiceImplTest {
+class SendNotificationUseCaseImplTest {
 
     @Mock
     private RateLimitRepository mockedRepository;
@@ -25,7 +26,7 @@ class NotificationServiceImplTest {
     private Gateway mockedGateway;
 
     @InjectMocks
-    private NotificationServiceImpl notificationService;
+    private SendNotificationUseCaseImpl notificationService;
 
     @Test
     void testSendNotification() {
