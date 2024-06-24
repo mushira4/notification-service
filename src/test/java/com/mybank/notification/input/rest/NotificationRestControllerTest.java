@@ -2,6 +2,7 @@ package com.mybank.notification.input.rest;
 
 import com.mybank.notification.core.domain.NotificationType;
 import com.mybank.notification.core.service.NotificationService;
+import com.mybank.notification.core.service.dto.NotificationServiceOutput;
 import com.mybank.notification.input.rest.dto.NotificationCreateRequestDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,10 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -40,11 +41,15 @@ class NotificationRestControllerTest {
         NotificationCreateRequestDTO request
                 = new NotificationCreateRequestDTO("news", "user1", "message");
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/notification")
-                        .content(objectMapper.writeValueAsString(request))
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+        when(notificationService.send(NotificationType.NEWS, "user1", "message"))
+                .thenReturn(new NotificationServiceOutput(NotificationType.NEWS, "user1", "message", 1));
 
-        verify(notificationService, times(1)).send(NotificationType.NEWS, request.getUserId(), request.getMessage());
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/notification")
+                .content(objectMapper.writeValueAsString(request))
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(requestBuilder).andExpect(status().isOk());
+
+
     }
 }

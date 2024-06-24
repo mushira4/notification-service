@@ -2,8 +2,10 @@ package com.mybank.notification.core.service;
 
 import com.mybank.notification.core.domain.Notification;
 import com.mybank.notification.core.domain.NotificationType;
+import com.mybank.notification.core.exception.NotificationRateLimitException;
 import com.mybank.notification.infra.gateway.Gateway;
 import com.mybank.notification.core.repository.RateLimitRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -45,7 +47,9 @@ class NotificationServiceImplTest {
 
         when(mockedRepository.findNumberOfEntries(notification)).thenReturn(10);
 
-        notificationService.send(type, "user1", "message1");
+        Assertions.assertThrows(NotificationRateLimitException.class, () -> {
+            notificationService.send(type, "user1", "message1");
+        });
 
         verify(mockedRepository, times(0)).save(notification);
         verify(mockedGateway, times(0)).send(any());
